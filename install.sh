@@ -20,6 +20,8 @@ apt install -y fish
 ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 chsh -s /usr/bin/fish
 
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+
 echo "Fish installed successfully!"
 
 

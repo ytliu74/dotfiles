@@ -25,3 +25,4 @@ alias gst="git status"
 alias gcm="git commit -m"
 
 set Downloads "/mnt/c/Users/24162/Downloads"
+set Desktop "/mnt/c/Users/24162/Desktop"
