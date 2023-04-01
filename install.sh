@@ -122,6 +122,32 @@ else
 fi
 
 
+# install clang-15 and set it to clang
+echo "Installing clang..."
+apt install -y clang-15
+
+update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
+update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 100
+
+echo "Clang installed successfully!"
+
+
+# install rust
+echo "Installing rust..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+echo "Rust installed successfully!"
+
+
+# install miniconda
+echo "Installing miniconda..."
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x ./Miniconda3-latest-Linux-x86_64.sh
+./Miniconda3-latest-Linux-x86_64.sh
+
+echo "Miniconda installed successfully!"
+
+
 # install exa
 echo "Installing exa..."
 apt install -y exa
@@ -143,18 +169,6 @@ echo "alias cd=z" >> config.fish
 echo "Zoxide installed successfully!"
 
 
-# install clang-15 and set it to clang
-echo "Installing clang..."
-apt install -y clang-15
-
-update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
-update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 100
-
-echo "Clang installed successfully!"
-
-
-# install rust
-echo "Installing rust..."
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-echo "Rust installed successfully!"
+# Post
+echo "Dotfiles installed successfully!"
+echo "Remember to init your conda environment!"
