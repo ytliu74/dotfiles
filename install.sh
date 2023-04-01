@@ -169,6 +169,14 @@ echo "alias cd=z" >> config.fish
 echo "Zoxide installed successfully!"
 
 
+# install alacritty config
+echo "Installing alacritty config..."
+cp alacritty.yml /mnt/c/Users/24162/AppData/Roaming/alacritty/alacritty.yml
+cp argonaut.yaml /mnt/c/Users/24162/AppData/Roaming/alacritty/argonaut.yaml
+
+echo "Alacritty config installed successfully!"
+
+
 # Post
 echo "Dotfiles installed successfully!"
 echo "Remember to init your conda environment!"
