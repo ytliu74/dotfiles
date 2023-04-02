@@ -47,7 +47,7 @@ fi
 
 
 # install fish
-echo "Installing fish..."
+echo "🚀 Installing fish..."
 apt-add-repository ppa:fish-shell/release-3
 apt update
 apt install -y fish
@@ -62,7 +62,7 @@ curl -L https://get.oh-my.fish | fish
 omf install pure
 omf theme pure
 
-echo "Oh-my-fish installed successfully!"
+echo "Oh-my-fish installed successfully! 🎉"
 
 # Ask about proxy settings
 echo "Please choose whether to set proxy ([y]/n)"
@@ -88,7 +88,7 @@ fi
 
 fish
 
-echo "Fish installed successfully!"
+echo "Fish installed successfully! 🎉"
 
 
 # install nodejs
@@ -97,11 +97,11 @@ read -r nodejs_choice
 nodejs_choice=${nodejs_choice:-y} 
 
 if [[ $nodejs_choice == "y" || $nodejs_choice == "Y" ]]; then
-    echo "Installing nodejs..."
+    echo "🚀 Installing nodejs..."
     curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
     apt install -y nodejs
 
-    echo "Nodejs installed successfully!"
+    echo "Nodejs installed successfully! 🎉"
 
     # Ask if want to use npm mirror
     echo "Please choose whether to use npm mirror ([y]/n)"
@@ -122,60 +122,70 @@ fi
 
 
 # install clang-15 and set it to clang
-echo "Installing clang..."
+echo "🚀 Installing clang..."
 apt install -y clang-15
 
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-15 100
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-15 100
 
-echo "Clang installed successfully!"
+echo "Clang installed successfully! 🎉"
 
 
 # install rust
-echo "Installing rust..."
+echo "🚀 Installing rust..."
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-echo "Rust installed successfully!"
+echo "Rust installed successfully! 🎉"
 
 
 # install miniconda
-echo "Installing miniconda..."
+echo "🚀 Installing miniconda..."
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x ./Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 
-echo "Miniconda installed successfully!"
+echo "Miniconda installed successfully! 🎉"
 
 
 # install exa
-echo "Installing exa..."
+echo "🚀 Installing exa..."
 apt install -y exa
 
 echo "alias ls=\"exa --group-directories-first\"" >> config.fish
 echo "alias ll=\"exa -lb --no-user --group-directories-first\"" >> config.fish
 echo "alias la=\"exa -alb --no-user --group-directories-first\"" >> config.fish
 
-echo "Exa installed successfully!"
+echo "Exa installed successfully! 🎉"
 
 
 # install zoxide
-echo "Installing zoxide..."
+echo "🚀 Installing zoxide..."
 curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
 
 echo "zoxide init fish | source" >> config.fish
 echo "alias cd=z" >> config.fish
 
-echo "Zoxide installed successfully!"
+echo "Zoxide installed successfully! 🎉"
 
 
 # install alacritty config
-echo "Installing alacritty config..."
+echo "🚀 Installing alacritty config..."
 cp alacritty.yml /mnt/c/Users/24162/AppData/Roaming/alacritty/alacritty.yml
 cp argonaut.yaml /mnt/c/Users/24162/AppData/Roaming/alacritty/argonaut.yaml
 
-echo "Alacritty config installed successfully!"
+echo "Alacritty config installed successfully! 🎉"
+
+
+# install oh-my-tmux to ~/.config/tmux
+echo "🚀 Installing oh-my-tmux..."
+git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+mkdir -p ~/.config/tmux
+ln -s -f ~/.tmux/.tmux.conf ~/.config/tmux/tmux.conf
+cp ~/.tmux/.tmux.conf.local ~/.config/tmux/tmux.conf.local
+
+echo "Oh-my-tmux installed successfully! 🎉"
 
 
 # Post
-echo "Dotfiles installed successfully!"
+echo "Dotfiles installed successfully! 🎉"
 echo "Remember to init your conda environment!"
