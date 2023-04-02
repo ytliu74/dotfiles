@@ -10,6 +10,8 @@ apt update
 apt upgrade
 apt install -y git tmux python3 pip p7zip-full
 
+mkdir -p ~/.config/pip
+ln -sf ~/dotfiles/pip.conf ~/.config/pip/pip.conf
 
 # Ask if want to copy ssh config & keys from Windows
 echo "Please choose whether to copy ssh config ([y]/n)"
@@ -55,7 +57,7 @@ apt install -y fish
 chsh -s /usr/bin/fish
 
 cp origin_dotfiles/config.fish.org config.fish
-ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
+ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 # install and configure oh-my-fish
 curl -L https://get.oh-my.fish | fish
@@ -143,6 +145,8 @@ echo "🚀 Installing miniconda..."
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x ./Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
+
+ln -sf ~/dotfiles/.condarc ~/.condarc
 
 echo "Miniconda installed successfully! 🎉"
 
