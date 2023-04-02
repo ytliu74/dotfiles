@@ -11,8 +11,35 @@ fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
 fish_add_path "/mnt/c/Users/24162/AppData/Local/Programs/Microsoft VS Code/bin"
 
+alias ..="cd .."
+
+alias cp="cp -i"
+
 alias gst="git status"
 alias gcm="git commit -m"
 
 set Downloads "/mnt/c/Users/24162/Downloads"
 set Desktop "/mnt/c/Users/24162/Desktop"
+
+# A function `ex`, to handle all common kinds of file extraction
+function ex
+    set filename $argv[1]
+    set filetype (file --mime-type $filename | cut -d' ' -f2)
+
+    switch $filetype
+        case 'application/zip'
+            unzip -v $filename
+        case 'application/x-tar'
+            tar -xvf $filename
+        case 'application/gzip'
+            tar -xzvf $filename
+        case 'application/x-bzip2'
+            tar -xjvf $filename
+        case 'application/x-xz'
+            tar -xJvf $filename
+        case 'application/x-7z-compressed'
+            7z x -v $filename
+        case '*'
+            echo "Unsupported file type"
+    end
+end
