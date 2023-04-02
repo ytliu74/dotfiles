@@ -8,7 +8,7 @@ read
 # ======== Add PPA and Binaries ========
 apt update
 apt upgrade
-apt install -y git tmux python3 pip
+apt install -y git tmux python3 pip p7zip-full
 
 
 # Ask if want to copy ssh config & keys from Windows
