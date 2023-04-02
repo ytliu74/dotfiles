@@ -57,6 +57,13 @@ chsh -s /usr/bin/fish
 cp origin_dotfiles/config.fish.org config.fish
 ln -s ~/dotfiles/config.fish ~/.config/fish/config.fish
 
+# install and configure oh-my-fish
+curl -L https://get.oh-my.fish | fish
+omf install pure
+omf theme pure
+
+echo "Oh-my-fish installed successfully!"
+
 # Ask about proxy settings
 echo "Please choose whether to set proxy ([y]/n)"
 read -r proxy_choice
@@ -82,14 +89,6 @@ fi
 fish
 
 echo "Fish installed successfully!"
-
-
-# install and configure oh-my-fish
-curl -L https://get.oh-my.fish | fish
-omf install pure
-omf theme pure
-
-echo "Oh-my-fish installed successfully!"
 
 
 # install nodejs
