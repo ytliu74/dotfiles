@@ -5,6 +5,7 @@ end
 set fish_greeting
 
 set fishrc $HOME/.config/fish/config.fish
+alias src="source $fishrc"
 
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.cargo/bin
