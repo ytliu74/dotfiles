@@ -41,6 +41,8 @@ if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
 
     echo "export https_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
     echo "export http_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
+
+    source ~/.bashrc
 else
     echo "Proxy settings cancelled."
 fi
