@@ -126,8 +126,6 @@ else
     echo "Proxy settings cancelled."
 fi
 
-fish
-
 echo "Fish installed successfully! 🎉"
 
 
