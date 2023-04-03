@@ -2,13 +2,45 @@
 
 echo "This is my dotfiles install script for WSL 1."
 echo "Please run this script with `sudo`"
-echo "Make sure you have updated SJTUG apt sources."
 read
 
-# ======== Add PPA and Binaries ========
+# Using SJTUG apt sources
+# Ask if using Ubuntu22.04-jammy
+echo "Please choose whether to use Ubuntu22.04-jammy ([y]/n)"
+read -r ubuntu_choice
+ubuntu_choice=${ubuntu_choice:-y}
+
+# cp 
+
+# Ask about proxy settings
+echo "Please choose whether to set proxy ([y]/n)"
+read -r proxy_choice
+proxy_choice=${proxy_choice:-y} 
+
+if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
+    # ask about wsl version
+    echo "Please choose whether to use localhost ([y]/n)"
+    read -r localhost_choice
+    localhost_choice=${localhost_choice:-y} 
+    if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
+        echo "export hostip=\"127.0.0.1\"" >> ~/.bashrc
+    else
+        echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> ~/.bashrc
+    fi
+
+    echo "export https_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
+    echo "export http_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
+else
+    echo "Proxy settings cancelled."
+fi
+
+source ~/.bashrc
+
+
+# Apt updates
 apt update
 apt upgrade
-apt install -y git tmux python3 pip p7zip-full
+apt install -y git tmux python3 pip p7zip-full ncdu
 
 mkdir -p ~/.config/pip
 ln -sf ~/dotfiles/pip.conf ~/.config/pip/pip.conf
@@ -66,17 +98,8 @@ omf theme pure
 
 echo "Oh-my-fish installed successfully! 🎉"
 
-# Ask about proxy settings
-echo "Please choose whether to set proxy ([y]/n)"
-read -r proxy_choice
-proxy_choice=${proxy_choice:-y} 
-
 if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
-    # ask about wsl version
-    echo "Please choose whether you are using WSL 1 ([y]/n)"
-    read -r wsl1_choice
-    wsl1_choice=${wsl1_choice:-y} 
-    if [[ $wsl1_choice == "y" || $wsl1_choice == "Y" ]]; then
+    if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
         echo "export hostip=\"127.0.0.1\"" >> config.fish
     else
         echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> config.fish
@@ -170,6 +193,16 @@ echo "zoxide init fish | source" >> config.fish
 echo "alias cd=z" >> config.fish
 
 echo "Zoxide installed successfully! 🎉"
+
+
+# install bat from latest GitHub release
+echo "🚀 Installing bat..."
+version=$(curl -s https://api.github.com/repos/sharkdp/bat/releases/latest | grep "tag_name" | cut -d '"' -f 4 | sed 's/v//')
+wget https://github.com/sharkdp/bat/releases/download/v${version}/bat_${version}_amd64.deb
+dpkg -i bat_${version}_amd64.deb
+rm bat_${version}_amd64.deb
+
+echo "Bat installed successfully! 🎉"
 
 
 # install alacritty config
