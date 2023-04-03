@@ -108,8 +108,8 @@ ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 # install and configure oh-my-fish
 curl -L https://get.oh-my.fish | fish
-omf install pure
-omf theme pure
+omf install pure | fish
+omf theme pure | fish
 
 echo "Oh-my-fish installed successfully! 🎉"
 
