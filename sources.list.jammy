@@ -1,0 +1,18 @@
+deb https://mirror.sjtu.edu.cn/ubuntu/ jammy main restricted universe multiverse
+# deb-src https://mirror.sjtu.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirror.sjtu.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+# deb-src https://mirror.sjtu.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirror.sjtu.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+# deb-src https://mirror.sjtu.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirror.sjtu.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+# deb-src https://mirror.sjtu.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+
+# deb https://mirror.sjtu.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+# deb-src https://mirror.sjtu.edu.cn/ubuntu/ jammy-proposed main restricted universe multiverse
+
+deb http://security.ubuntu.com/ubuntu/ jammy-security main restricted
+# deb-src http://security.ubuntu.com/ubuntu/ jammy-security main restricted
+deb http://security.ubuntu.com/ubuntu/ jammy-security universe
+# deb-src http://security.ubuntu.com/ubuntu/ jammy-security universe
+deb http://security.ubuntu.com/ubuntu/ jammy-security multiverse
+# deb-src http://security.ubuntu.com/ubuntu/ jammy-security multiverse

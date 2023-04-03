@@ -10,7 +10,12 @@ echo "Please choose whether to use Ubuntu22.04-jammy ([y]/n)"
 read -r ubuntu_choice
 ubuntu_choice=${ubuntu_choice:-y}
 
-# cp 
+# link the new sources.list
+if [[ $ubuntu_choice == "y" || $ubuntu_choice == "Y" ]]; then
+    cp /etc/apt/sources.list /etc/apt/sources.list.bak
+    ln -sf ~/dotfiles/sources.list.jammy /etc/apt/sources.list
+fi
+
 
 # Ask about proxy settings
 echo "Please choose whether to set proxy ([y]/n)"
