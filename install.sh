@@ -8,6 +8,8 @@ if [[ $EUID -eq 0 ]]; then
    exit 1
 fi
 
+sudo -v
+
 # Using SJTUG apt sources
 # Ask if using Ubuntu22.04-jammy
 echo "Please choose whether to use Ubuntu22.04-jammy ([y]/n)"
@@ -61,12 +63,14 @@ ssh_config_choice=${ssh_config_choice:-y}
 
 if [[ $ssh_config_choice == "y" || $ssh_config_choice == "Y" ]]; then
     mkdir -p ~/.ssh
-    cp -r /mnt/c/Users/24162/.ssh ~/.ssh
-    chmod 600 ~/.ssh/config
+    # copy config, id_rsa, id_rsa.pub from local windows
+    cp /mnt/c/Users/24162/.ssh/config ~/.ssh/config
+    cp /mnt/c/Users/24162/.ssh/id_rsa ~/.ssh/id_rsa
+    cp /mnt/c/Users/24162/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+
+    # change permission
     chmod 600 ~/.ssh/id_rsa
     chmod 644 ~/.ssh/id_rsa.pub
-    chmod 644 ~/.ssh/known_hosts
-    chmod 644 ~/.ssh/authorized_keys
 
     echo "Ssh config copied successfully!"
 else
@@ -99,6 +103,7 @@ sudo apt install -y fish
 chsh -s /usr/bin/fish
 
 cp ~/dotfiles/origin_dotfiles/config.fish.org ~/dotfiles/config.fish
+mkdir -p ~/.config/fish
 ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 # install and configure oh-my-fish
@@ -234,5 +239,7 @@ echo "Oh-my-tmux installed successfully! 🎉"
 
 
 # Post
+sudo -k
+
 echo "Dotfiles installed successfully! 🎉"
 echo "Remember to init your conda environment!"
