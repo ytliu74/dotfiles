@@ -98,7 +98,7 @@ sudo apt install -y fish
 
 chsh -s /usr/bin/fish
 
-cp origin_dotfiles/config.fish.org config.fish
+cp ~/dotfiles/origin_dotfiles/config.fish.org ~/dotfiles/config.fish
 ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 # install and configure oh-my-fish

@@ -9,13 +9,14 @@ This repository contains the dotfiles for WSL 1. The install script installs var
 1. Clone the repository to your home directory:
 
    ```bash
-   git clone git@github.com:Yaotian-Liu/dotfiles.git ~/dotfiles
+   git clone https://github.com/Yaotian-Liu/dotfiles.git
    ```
 
 2. Run the install script with sudo:
 
    ```bash
-   sudo ~/dotfiles/install.sh
+   chmod +x install.sh
+   ./install.sh
    ```
 
 3. Follow the prompts to configure ssh, git, proxy, npm mirror, and other settings.
