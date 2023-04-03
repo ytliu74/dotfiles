@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "This is my dotfiles install script for WSL 1."
+echo "Please set up proxy for your bash first!"
 
 # Check if running as root
 if [[ $EUID -eq 0 ]]; then
@@ -21,33 +22,6 @@ if [[ $ubuntu_choice == "y" || $ubuntu_choice == "Y" ]]; then
     sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
     sudo ln -sf ~/dotfiles/sources.list.jammy /etc/apt/sources.list
 fi
-
-
-# Ask about proxy settings
-echo "Please choose whether to set proxy ([y]/n)"
-read -r proxy_choice
-proxy_choice=${proxy_choice:-y} 
-
-if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
-    # ask about wsl version
-    echo "Please choose whether to use localhost ([y]/n)"
-    read -r localhost_choice
-    localhost_choice=${localhost_choice:-y} 
-    if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
-        echo "export hostip=\"127.0.0.1\"" >> ~/.bashrc
-    else
-        echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> ~/.bashrc
-    fi
-
-    echo "export https_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
-    echo "export http_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
-
-    source ~/.bashrc
-else
-    echo "Proxy settings cancelled."
-fi
-
-source ~/.bashrc
 
 
 # Apt updates
@@ -111,7 +85,16 @@ curl -L https://get.oh-my.fish | fish
 
 echo "Oh-my-fish installed successfully! 🎉"
 
+# Ask about proxy settings
+echo "Please choose whether to set proxy ([y]/n)"
+read -r proxy_choice
+proxy_choice=${proxy_choice:-y} 
 if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
+    # ask about wsl version
+    echo "Please choose whether to use localhost ([y]/n)"
+    read -r localhost_choice
+    localhost_choice=${localhost_choice:-y}
+
     if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
         echo "export hostip=\"127.0.0.1\"" >> config.fish
     else
