@@ -46,7 +46,7 @@ source $home/.bashrc
 
 # Apt updates
 apt update
-apt upgrade
+apt upgrade -y
 apt install -y git tmux python3 pip p7zip-full ncdu
 
 mkdir -p $home/.config/pip
@@ -58,6 +58,7 @@ read -r ssh_config_choice
 ssh_config_choice=${ssh_config_choice:-y} 
 
 if [[ $ssh_config_choice == "y" || $ssh_config_choice == "Y" ]]; then
+    mkdir -p $home/.ssh
     cp -r /mnt/c/Users/24162/.ssh $home/.ssh
     chmod 600 $home/.ssh/config
     chmod 600 $home/.ssh/id_rsa
