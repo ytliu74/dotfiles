@@ -4,6 +4,8 @@ echo "This is my dotfiles install script for WSL 1."
 echo "Please run this script with `sudo`"
 read
 
+home=/home/henry
+
 # Using SJTUG apt sources
 # Ask if using Ubuntu22.04-jammy
 echo "Please choose whether to use Ubuntu22.04-jammy ([y]/n)"
@@ -13,7 +15,7 @@ ubuntu_choice=${ubuntu_choice:-y}
 # link the new sources.list
 if [[ $ubuntu_choice == "y" || $ubuntu_choice == "Y" ]]; then
     cp /etc/apt/sources.list /etc/apt/sources.list.bak
-    ln -sf ~/dotfiles/sources.list.jammy /etc/apt/sources.list
+    ln -sf $home/dotfiles/sources.list.jammy /etc/apt/sources.list
 fi
 
 
@@ -28,18 +30,18 @@ if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
     read -r localhost_choice
     localhost_choice=${localhost_choice:-y} 
     if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
-        echo "export hostip=\"127.0.0.1\"" >> ~/.bashrc
+        echo "export hostip=\"127.0.0.1\"" >> $home/.bashrc
     else
-        echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> ~/.bashrc
+        echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> $home/.bashrc
     fi
 
-    echo "export https_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
-    echo "export http_proxy=\"http://$hostip:7890\"" >> ~/.bashrc
+    echo "export https_proxy=\"http://$hostip:7890\"" >> $home/.bashrc
+    echo "export http_proxy=\"http://$hostip:7890\"" >> $home/.bashrc
 else
     echo "Proxy settings cancelled."
 fi
 
-source ~/.bashrc
+source $home/.bashrc
 
 
 # Apt updates
@@ -47,8 +49,8 @@ apt update
 apt upgrade
 apt install -y git tmux python3 pip p7zip-full ncdu
 
-mkdir -p ~/.config/pip
-ln -sf ~/dotfiles/pip.conf ~/.config/pip/pip.conf
+mkdir -p $home/.config/pip
+ln -sf $home/dotfiles/pip.conf $home/.config/pip/pip.conf
 
 # Ask if want to copy ssh config & keys from Windows
 echo "Please choose whether to copy ssh config ([y]/n)"
@@ -56,12 +58,12 @@ read -r ssh_config_choice
 ssh_config_choice=${ssh_config_choice:-y} 
 
 if [[ $ssh_config_choice == "y" || $ssh_config_choice == "Y" ]]; then
-    cp -r /mnt/c/Users/24162/.ssh ~/.ssh
-    chmod 600 ~/.ssh/config
-    chmod 600 ~/.ssh/id_rsa
-    chmod 644 ~/.ssh/id_rsa.pub
-    chmod 644 ~/.ssh/known_hosts
-    chmod 644 ~/.ssh/authorized_keys
+    cp -r /mnt/c/Users/24162/.ssh $home/.ssh
+    chmod 600 $home/.ssh/config
+    chmod 600 $home/.ssh/id_rsa
+    chmod 644 $home/.ssh/id_rsa.pub
+    chmod 644 $home/.ssh/known_hosts
+    chmod 644 $home/.ssh/authorized_keys
 
     echo "Ssh config copied successfully!"
 else
@@ -75,7 +77,7 @@ read -r git_config_choice
 git_config_choice=${git_config_choice:-y} 
 
 if [[ $git_config_choice == "y" || $git_config_choice == "Y" ]]; then
-    cp /mnt/c/Users/24162/.gitconfig ~/.gitconfig
+    cp /mnt/c/Users/24162/.gitconfig $home/.gitconfig
     
     git config --global gpg.program "/mnt/c/Program Files (x86)/gnupg/bin/gpg.exe"
 
@@ -94,7 +96,7 @@ apt install -y fish
 chsh -s /usr/bin/fish
 
 cp origin_dotfiles/config.fish.org config.fish
-ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
+ln -sf $home/dotfiles/config.fish $home/.config/fish/config.fish
 
 # install and configure oh-my-fish
 curl -L https://get.oh-my.fish | fish
@@ -174,7 +176,7 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x ./Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 
-ln -sf ~/dotfiles/.condarc ~/.condarc
+ln -sf $home/dotfiles/.condarc $home/.condarc
 
 echo "Miniconda installed successfully! 🎉"
 
@@ -218,12 +220,12 @@ cp argonaut.yaml /mnt/c/Users/24162/AppData/Roaming/alacritty/argonaut.yaml
 echo "Alacritty config installed successfully! 🎉"
 
 
-# install oh-my-tmux to ~/.config/tmux
+# install oh-my-tmux to $home/.config/tmux
 echo "🚀 Installing oh-my-tmux..."
-git clone https://github.com/gpakosz/.tmux.git ~/.tmux
-mkdir -p ~/.config/tmux
-ln -s -f ~/.tmux/.tmux.conf ~/.config/tmux/tmux.conf
-cp ~/.tmux/.tmux.conf.local ~/.config/tmux/tmux.conf.local
+git clone https://github.com/gpakosz/.tmux.git $home/.tmux
+mkdir -p $home/.config/tmux
+ln -s -f $home/.tmux/.tmux.conf $home/.config/tmux/tmux.conf
+cp $home/.tmux/.tmux.conf.local $home/.config/tmux/tmux.conf.local
 
 echo "Oh-my-tmux installed successfully! 🎉"
 
