@@ -84,10 +84,9 @@ cp ~/dotfiles/origin_dotfiles/config.fish.org ~/dotfiles/config.fish
 mkdir -p ~/.config/fish
 ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
-# install and configure oh-my-fish
-curl -L https://get.oh-my.fish | fish
-
-echo "Oh-my-fish installed successfully! 🎉"
+# install starship
+curl -sS https://starship.rs/install.sh | sh
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
 
 # Ask about proxy settings
 echo "Please choose whether to set proxy ([y]/n)"
@@ -224,6 +223,7 @@ echo "Oh-my-tmux installed successfully! 🎉"
 # Post
 sudo -k
 chsh -s /usr/bin/fish
+echo "starship init fish | source" >> config.fish
 
 echo "Dotfiles installed successfully! 🎉"
 echo "Remember to init your conda environment!"

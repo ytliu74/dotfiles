@@ -1,0 +1,4 @@
+[conda]
+symbol = '🐍 '
+style = 'green'
+ignore_base = false

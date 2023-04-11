@@ -8,3 +8,4 @@ custom_channels:
   pytorch: https://mirror.sjtu.edu.cn/anaconda/cloud/
 channels:
   - defaults
+changeps1: false
