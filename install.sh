@@ -9,6 +9,9 @@ if [[ $EUID -eq 0 ]]; then
    exit 1
 fi
 
+echo "Please input your Windows user name: "
+read -r user_name
+
 sudo -v
 
 # Using SJTUG apt sources
@@ -32,6 +35,7 @@ sudo apt install -y git tmux python3 pip p7zip-full ncdu
 mkdir -p ~/.config/pip
 ln -sf ~/dotfiles/pip.conf ~/.config/pip/pip.conf
 
+
 # Ask if want to copy ssh config & keys from Windows
 echo "Please choose whether to copy ssh config ([y]/n)"
 read -r ssh_config_choice
@@ -40,9 +44,9 @@ ssh_config_choice=${ssh_config_choice:-y}
 if [[ $ssh_config_choice == "y" || $ssh_config_choice == "Y" ]]; then
     mkdir -p ~/.ssh
     # copy config, id_rsa, id_rsa.pub from local windows
-    cp /mnt/c/Users/24162/.ssh/config ~/.ssh/config
-    cp /mnt/c/Users/24162/.ssh/id_rsa ~/.ssh/id_rsa
-    cp /mnt/c/Users/24162/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
+    cp /mnt/c/Users/$user_name/.ssh/config ~/.ssh/config
+    cp /mnt/c/Users/$user_name/.ssh/id_rsa ~/.ssh/id_rsa
+    cp /mnt/c/Users/$user_name/.ssh/id_rsa.pub ~/.ssh/id_rsa.pub
 
     # change permission
     chmod 600 ~/.ssh/id_rsa
@@ -60,7 +64,7 @@ read -r git_config_choice
 git_config_choice=${git_config_choice:-y} 
 
 if [[ $git_config_choice == "y" || $git_config_choice == "Y" ]]; then
-    cp /mnt/c/Users/24162/.gitconfig ~/.gitconfig
+    cp /mnt/c/Users/$user_name/.gitconfig ~/.gitconfig
     
     git config --global gpg.program "/mnt/c/Program Files (x86)/gnupg/bin/gpg.exe"
 
@@ -201,8 +205,8 @@ echo "Bat installed successfully! 🎉"
 
 # install alacritty config
 echo "🚀 Installing alacritty config..."
-cp alacritty.yml /mnt/c/Users/24162/AppData/Roaming/alacritty/alacritty.yml
-cp argonaut.yaml /mnt/c/Users/24162/AppData/Roaming/alacritty/argonaut.yaml
+cp alacritty.yml /mnt/c/Users/$user_name/AppData/Roaming/alacritty/alacritty.yml
+cp argonaut.yaml /mnt/c/Users/$user_name/AppData/Roaming/alacritty/argonaut.yaml
 
 echo "Alacritty config installed successfully! 🎉"
 
