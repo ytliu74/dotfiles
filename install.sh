@@ -104,8 +104,8 @@ if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
         echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> config.fish
     fi
 
-    echo "export https_proxy=\"http://$hostip:7890\"" >> config.fish
-    echo "export http_proxy=\"http://$hostip:7890\"" >> config.fish
+    echo "export https_proxy=\"http://\$hostip:7890\"" >> config.fish
+    echo "export http_proxy=\"http://\$hostip:7890\"" >> config.fish
 else
     echo "Proxy settings cancelled."
 fi
