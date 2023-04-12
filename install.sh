@@ -84,6 +84,10 @@ cp ~/dotfiles/origin_dotfiles/config.fish.org ~/dotfiles/config.fish
 mkdir -p ~/.config/fish
 ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
+#install man.fish
+mkdir -p ~/.config/fish/conf.d
+wget https://github.com/decors/fish-colored-man/blob/master/functions/man.fish ~/.config/fish/conf.d/man.fish
+
 # install starship
 curl -sS https://starship.rs/install.sh | sh
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
