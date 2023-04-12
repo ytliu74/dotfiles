@@ -86,7 +86,7 @@ ln -sf ~/dotfiles/config.fish ~/.config/fish/config.fish
 
 # install man.fish
 mkdir -p ~/.config/fish/conf.d
-wget https://github.com/decors/fish-colored-man/blob/master/functions/man.fish ~/.config/fish/conf.d/man.fish
+wget https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish -O ~/.config/fish/conf.d/man.fish
 
 # install starship
 curl -sS https://starship.rs/install.sh | sh
