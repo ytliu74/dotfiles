@@ -1,4 +1,6 @@
+[character]
+success_symbol = '[➜](bold green)'
+
 [conda]
-symbol = '🐍 '
 style = 'green'
 ignore_base = false

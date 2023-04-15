@@ -20,6 +20,7 @@ alias ..="cd .."
 
 alias cp="cp -i"
 alias l="ls"
+alias bat="bat --theme=OneHalfLight"
 
 alias gst="git status"
 alias gcm="git commit -m"
