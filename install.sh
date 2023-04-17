@@ -31,7 +31,7 @@ fi
 # Apt updates
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y git tmux python3 pip p7zip-full ncdu
+sudo apt install -y git tmux python3 pip p7zip-full ncdu ripgrep
 
 mkdir -p ~/.config/pip
 ln -sf ~/dotfiles/pip.conf ~/.config/pip/pip.conf
@@ -53,6 +53,7 @@ scripts=(
   "alacritty.sh"
   "tmux.sh"
   "lazygit.sh"
+  "neovim.sh"
 )
 
 # Loop through array and call script files
