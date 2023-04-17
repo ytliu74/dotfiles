@@ -11,6 +11,7 @@ fi
 
 echo "Please input your Windows user name: "
 read -r user_name
+export user_name
 
 sudo -v
 

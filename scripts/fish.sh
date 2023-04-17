@@ -29,13 +29,13 @@ if [[ $proxy_choice == "y" || $proxy_choice == "Y" ]]; then
     localhost_choice=${localhost_choice:-y}
 
     if [[ $localhost_choice == "y" || $localhost_choice == "Y" ]]; then
-        echo "export hostip=\"127.0.0.1\"" >> config.fish
+        echo 'export hostip=\"127.0.0.1\"' >> config.fish
     else
-        echo "export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"" >> config.fish
+        echo 'export hostip=\"$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')\"' >> config.fish
     fi
 
-    echo "export https_proxy=\"http://\$hostip:7890\"" >> config.fish
-    echo "export http_proxy=\"http://\$hostip:7890\"" >> config.fish
+    echo 'export https_proxy=\"http://\$hostip:7890\"' >> config.fish
+    echo 'export http_proxy=\"http://\$hostip:7890\"' >> config.fish
 else
     echo "Proxy settings cancelled."
 fi
