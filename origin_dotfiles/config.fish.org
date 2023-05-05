@@ -2,11 +2,6 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# Source all .fish files in conf.d directory
-for file in ~/.config/fish/conf.d/*.fish
-    source $file
-end
-
 set fish_greeting
 
 set fishrc $HOME/.config/fish/config.fish
